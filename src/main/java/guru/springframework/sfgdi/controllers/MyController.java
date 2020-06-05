@@ -1,15 +1,26 @@
 package guru.springframework.sfgdi.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import guru.springframework.sfgdi.services.GreetingService;
 
 /**
  * Created by jt on 12/26/19.
  */
 @Controller
 public class MyController{
-	public String sayHello() {
-		System.out.println("Hello World");
+	
+	private final GreetingService greetingService;
+	
+	
+	public MyController(GreetingService greetingService) {
 		
-		return"Hey Folks ";
+		this.greetingService = greetingService;
+	}
+
+
+	public String sayHello() {
+		return greetingService.sayGreeting();
 	}
 }
